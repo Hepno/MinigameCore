@@ -33,6 +33,8 @@ public class Arena {
         player.teleport(ConfigManager.getLobbySpawn());
     }
 
+    public void setState(GameState state) { this.state = state; }
+
     public int getId() { return id; }
     public List<UUID> getPlayers() { return players; }
     public GameState getState() { return state; }
