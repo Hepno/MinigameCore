@@ -1,6 +1,8 @@
 package dev.hepno.minigamecore.instance;
 
+import dev.hepno.minigamecore.manager.ConfigManager;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,18 @@ public class Arena {
         this.players = new ArrayList<>();
     }
 
-    
+    public void addPlayer(Player player) {
+        players.add(player.getUniqueId());
+        player.teleport(spawn);
+    }
+
+    public void removePlayer(Player player) {
+        players.remove(player.getUniqueId());
+        player.teleport(ConfigManager.getLobbySpawn());
+    }
+
+    public int getId() { return id; }
+    public List<UUID> getPlayers() { return players; }
+    public GameState getState() { return state; }
 
 }
