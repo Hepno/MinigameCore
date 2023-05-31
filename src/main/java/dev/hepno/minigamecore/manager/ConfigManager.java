@@ -7,6 +7,12 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 public class ConfigManager {
 
+    /*
+    This class serves as an easy way to access config fields, so that the File doesn't have to be accessed every time,
+    as that would cause a lot of lag. It does contain a getConfig() method if needed, but it's not recommended to use it
+    unless you really need to, instead, use the individual getters for each field.
+     */
+
     private static FileConfiguration config;
 
     public static void setupConfig(MinigameCore plugin) {
