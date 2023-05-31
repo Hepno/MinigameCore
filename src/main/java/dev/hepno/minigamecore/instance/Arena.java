@@ -1,6 +1,7 @@
 package dev.hepno.minigamecore.instance;
 
 import dev.hepno.minigamecore.manager.ConfigManager;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -23,6 +24,21 @@ public class Arena {
         this.players = new ArrayList<>();
     }
 
+    /* Methods */
+    public void broadcast(String message) {
+        for (UUID uuid : players) {
+            Bukkit.getPlayer(uuid).sendMessage(message);
+        }
+    }
+
+    public void broadcastTitle(String title, String subtitle) {
+        for (UUID uuid : players) {
+            Player player = Bukkit.getPlayer(uuid);
+            player.sendTitle(title, subtitle, 10, 70, 20);
+        }
+    }
+
+    /* Setters */
     public void addPlayer(Player player) {
         players.add(player.getUniqueId());
         player.teleport(spawn);
@@ -35,6 +51,7 @@ public class Arena {
 
     public void setState(GameState state) { this.state = state; }
 
+    /* Getters */
     public int getId() { return id; }
     public List<UUID> getPlayers() { return players; }
     public GameState getState() { return state; }
