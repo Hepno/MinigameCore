@@ -38,7 +38,6 @@ public class ExampleGame1 extends Game {
 
     public ExampleGame1(MinigameCore plugin, Arena arena) {
         super(plugin, arena);
-        System.out.println("DEBUG 5");
         points = new HashMap<>();
     }
 
@@ -52,7 +51,6 @@ public class ExampleGame1 extends Game {
 
     /* SETTERS */
     public void addPoint(UUID uuid) {
-        System.out.println("DEBUG 6");
         points.put(uuid, points.get(uuid) + 1);
         if (points.get(uuid) >= 10) {
             arena.broadcastTitle("Game Over!", "");

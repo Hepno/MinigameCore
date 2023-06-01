@@ -23,23 +23,19 @@ public class Countdown extends BukkitRunnable {
     }
 
     public void start() {
-        System.out.println("DEBUG 2");
         arena.setState(GameState.STARTING);
         this.runTaskTimer(plugin, 0, 20);
     }
 
     @Override
     public void run() {
-        System.out.println("DEBUG 3");
         if (seconds == 0) {
-            System.out.println("DEBUG 4");
             arena.start();
             cancel();
             return;
         }
 
         if (seconds % 15 == 0 || seconds <= 10) {
-            System.out.println("DEBUG 5");
             arena.broadcastTitle(ChatColor.GREEN.toString() + seconds, "");
         }
 

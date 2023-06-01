@@ -103,10 +103,8 @@ public class Arena {
         players.add(player.getUniqueId());
         player.teleport(spawn);
 
-        System.out.println(ConfigManager.getRequiredPlayers(String.valueOf(id)));
         if (state.equals(GameState.RECRUITING) && players.size() >= ConfigManager.getRequiredPlayers(String.valueOf(id))) {
             countdown.start();
-            System.out.println("DEBUG 1");
         }
     }
 
