@@ -17,7 +17,7 @@ public class ArenaManager {
         FileConfiguration config = plugin.getConfig();
 
         for (String str : config.getConfigurationSection("arenas.").getKeys(false)) {
-            arenas.add(new Arena(Integer.parseInt(str), new Location(
+            arenas.add(new Arena(plugin, Integer.parseInt(str), new Location(
                     plugin.getServer().getWorld(config.getString("arenas." + str + ".spawn.world")),
                     config.getDouble("arenas." + str + ".spawn.x"),
                     config.getDouble("arenas." + str + ".spawn.y"),

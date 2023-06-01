@@ -1,5 +1,6 @@
 package dev.hepno.minigamecore.instance;
 
+import dev.hepno.minigamecore.MinigameCore;
 import dev.hepno.minigamecore.manager.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -11,20 +12,48 @@ import java.util.UUID;
 
 public class Arena {
 
+    private MinigameCore plugin;
+
     private int id;
     private Location spawn;
 
     private List<UUID> players = new ArrayList<>();
     private GameState state;
+    private Countdown countdown;
+    private Game game;
 
-    public Arena(int id, Location spawn) {
+    public Arena(MinigameCore plugin, int id, Location spawn) {
+        this.plugin = plugin;
         this.id = id;
         this.spawn = spawn;
         this.state = GameState.RECRUITING;
         this.players = new ArrayList<>();
+        this.countdown = new Countdown(plugin, this);
+        this.game = new Game(this);
     }
 
-    /* Methods */
+    /* Game Methods */
+    public void start() {
+        state = GameState.INGAME;
+        game.start();
+    }
+
+    public void reset(boolean keepPlayers) {
+        if (!keepPlayers) {
+            for (UUID uuid : players) {
+                Bukkit.getPlayer(uuid).teleport(ConfigManager.getLobbySpawn());
+            }
+            players.clear();
+        }
+
+        state = GameState.RECRUITING;
+        countdown.cancel();
+        players.clear();
+        countdown = new Countdown(plugin, this);
+        game = new Game(this);
+    }
+
+    /* General Methods */
     public void broadcast(String message) {
         for (UUID uuid : players) {
             Bukkit.getPlayer(uuid).sendMessage(message);
@@ -42,6 +71,10 @@ public class Arena {
     public void addPlayer(Player player) {
         players.add(player.getUniqueId());
         player.teleport(spawn);
+
+        if (state.equals(GameState.RECRUITING) && players.size() >= ConfigManager.getRequiredPlayers()) {
+            countdown.start();
+        }
     }
 
     public void removePlayer(Player player) {
