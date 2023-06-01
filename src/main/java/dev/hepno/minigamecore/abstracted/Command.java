@@ -12,6 +12,13 @@ import java.util.List;
 
 public abstract class Command extends BukkitCommand {
 
+    /*
+    https://gist.github.com/Hepno/5fbca766389533b6ab18036ecefa0609
+
+    This is my Command class, I was fed up with Spigots vanilla CommandExecutor system because
+    it sucks and the default names drive me insane, so I made my own.
+     */
+
     public Command(String command, String permission, String[] aliases, String description) {
         super(command);
 

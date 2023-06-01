@@ -11,6 +11,14 @@ import java.util.List;
 
 public class ArenaManager {
 
+    /*
+    This class manages all of the Arenas that currently exist. It only has ONE instance, DON'T create more.
+    It is instantiated in the Main class, and is used to store information about the Arenas.
+
+    If you need to modify an arena from another class, you can use the getArena() method to get the Arena instance,
+    either by Arena ID, or by Player (If you call by player, it will return the Arena that the player is in, or null if they aren't in one).
+     */
+
     private List<Arena> arenas = new ArrayList<>();
 
     public ArenaManager(MinigameCore plugin) {

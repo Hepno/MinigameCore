@@ -13,6 +13,14 @@ import java.util.UUID;
 
 public class Arena {
 
+    /*
+    Welcome to the Arena class! Whenever a new instance of a Game starts, an Arena is created.
+    You can have one Game per Arena, but you can have multiple Arenas per game.
+
+    This class is instantiated in the ArenaManager class, and is used to store information about the Arena.
+    It also contains methods that are used to interact with the Arena.
+     */
+
     private MinigameCore plugin;
 
     private int id;

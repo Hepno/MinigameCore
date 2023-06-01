@@ -9,6 +9,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class ConnectionHandler implements Listener {
 
+    /*
+    Just a very simple join/leave listener. Feel free to scrap it, use it, or modify it. It's up to you.
+     */
+
     private MinigameCore plugin;
     public ConnectionHandler(MinigameCore plugin) {
         this.plugin = plugin;

@@ -7,6 +7,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class Countdown extends BukkitRunnable {
 
+    /*
+    This class is instanced by Arenas when they enter the STARTING game state. It handles
+    counting down and starting the game when the timer reaches 0, if that wasn't apparent from the name.
+     */
+
     private MinigameCore plugin;
     private Arena arena;
     private int seconds;

@@ -11,6 +11,13 @@ import java.util.List;
 
 public class MinigameCommand extends Command {
 
+    /*
+    This is just a basic example command, you can scrap it and make your own if you want,
+    or you can use it as a base for your own command.
+
+    The command handles joining, leaving, and listing arenas.
+     */
+
     private final MinigameCore plugin;
 
     public MinigameCommand(String command, String permission, String[] aliases, String description, MinigameCore plugin) {
