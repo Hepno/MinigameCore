@@ -80,6 +80,17 @@ public class Arena {
     public void removePlayer(Player player) {
         players.remove(player.getUniqueId());
         player.teleport(ConfigManager.getLobbySpawn());
+        player.sendTitle("", "", 0, 0, 0);
+
+        if (state.equals(GameState.STARTING) && players.size() < ConfigManager.getRequiredPlayers()) {
+            countdown.cancel();
+        }
+
+        if (state.equals(GameState.INGAME) && players.size() < 2) {
+            reset(false);
+        }
+
+
     }
 
     public void setState(GameState state) { this.state = state; }
@@ -88,5 +99,6 @@ public class Arena {
     public int getId() { return id; }
     public List<UUID> getPlayers() { return players; }
     public GameState getState() { return state; }
+    public Game getGame() { return game; }
 
 }
