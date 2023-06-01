@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ArenaManager {
 
@@ -24,15 +25,16 @@ public class ArenaManager {
     public ArenaManager(MinigameCore plugin) {
         FileConfiguration config = plugin.getConfig();
 
-        for (String str : config.getConfigurationSection("arenas.").getKeys(false)) {
+        for (String str : config.getConfigurationSection("arenas").getKeys(false)) {
             arenas.add(new Arena(plugin, Integer.parseInt(str), new Location(
-                    plugin.getServer().getWorld(config.getString("arenas." + str + ".spawn.world")),
+                    plugin.getServer().getWorld(config.getString("lobby-spawn.world")),
                     config.getDouble("arenas." + str + ".spawn.x"),
                     config.getDouble("arenas." + str + ".spawn.y"),
                     config.getDouble("arenas." + str + ".spawn.z"),
                     (float) config.getDouble("arenas." + str + ".spawn.yaw"),
                     (float) config.getDouble("arenas." + str + ".spawn.pitch")
-            )));
+                ),
+                Objects.requireNonNull(config.getString("arenas." + str + ".game"))));
         }
     }
 

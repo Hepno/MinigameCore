@@ -26,8 +26,8 @@ public class ConfigManager {
         return ConfigManager.config;
     }
 
-    public static int getRequiredPlayers() {
-        return ConfigManager.config.getInt("required-players");
+    public static int getRequiredPlayers(String arenaName) {
+        return ConfigManager.config.getInt("arenas." + arenaName + ".required-players");
     }
 
     public static int getCountdown() {

@@ -22,13 +22,23 @@ public class ExampleGame1 extends Game {
     Games have Listeners built in, so you can register events in the game class.
     They are automatically registered and unregistered when the game starts and ends.
 
-    NOTE: When creating a game, please add it to the Switch statement in the Arena class.
+    I do intend on making this a maintained project, with Modules to make adding Teams,
+    Scoreboards, Bungee support, etc easier, but right now I don't have the time.
+
+    If you want to contribute, feel free to make a pull request. I'll eventually make a website
+    to build your own version with the modules you want, but that's a long way off.
+
+
+
+    NOTE: When creating a game, please add it to the Switch statement in the Arena class, both
+    in the constructor and in the reset() method, otherwise it won't work.
      */
 
     private HashMap<UUID, Integer> points; //Not all games will have points, but this is just an example
 
     public ExampleGame1(MinigameCore plugin, Arena arena) {
         super(plugin, arena);
+        System.out.println("DEBUG 5");
         points = new HashMap<>();
     }
 
@@ -42,10 +52,11 @@ public class ExampleGame1 extends Game {
 
     /* SETTERS */
     public void addPoint(UUID uuid) {
+        System.out.println("DEBUG 6");
         points.put(uuid, points.get(uuid) + 1);
         if (points.get(uuid) >= 10) {
             arena.broadcastTitle("Game Over!", "");
-            // TODO: Reset arena
+            arena.reset(false);
         }
     }
 

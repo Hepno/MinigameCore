@@ -1,5 +1,6 @@
 package dev.hepno.minigamecore;
 
+import dev.hepno.minigamecore.command.MinigameCommand;
 import dev.hepno.minigamecore.listener.ConnectionHandler;
 import dev.hepno.minigamecore.manager.ArenaManager;
 import dev.hepno.minigamecore.manager.ConfigManager;
@@ -29,6 +30,7 @@ public final class MinigameCore extends JavaPlugin {
         ConfigManager.setupConfig(this);
         arenaManager = new ArenaManager(this);
         registerListeners();
+        registerCommands();
     }
 
     @Override
@@ -37,8 +39,11 @@ public final class MinigameCore extends JavaPlugin {
     }
 
     public void registerListeners() {
-        Bukkit.getPluginManager().registerEvents(new GameListeners(this), this);
         Bukkit.getPluginManager().registerEvents(new ConnectionHandler(this), this);
+    }
+
+    public void registerCommands() {
+        new MinigameCommand("minigame", "minigamecore.command.minigame", new String[]{"mg"}, "MinigameCore command", this);
     }
 
     public ArenaManager getArenaManager() {
