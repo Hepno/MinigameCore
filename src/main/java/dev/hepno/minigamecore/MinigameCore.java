@@ -1,7 +1,6 @@
 package dev.hepno.minigamecore;
 
 import dev.hepno.minigamecore.listener.ConnectionHandler;
-import dev.hepno.minigamecore.listener.GameListeners;
 import dev.hepno.minigamecore.manager.ArenaManager;
 import dev.hepno.minigamecore.manager.ConfigManager;
 import org.bukkit.Bukkit;

@@ -1,6 +1,7 @@
 package dev.hepno.minigamecore.instance;
 
 import dev.hepno.minigamecore.MinigameCore;
+import dev.hepno.minigamecore.abstracted.Game;
 import dev.hepno.minigamecore.manager.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
