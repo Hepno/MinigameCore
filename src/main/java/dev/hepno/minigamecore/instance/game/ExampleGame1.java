@@ -21,6 +21,8 @@ public class ExampleGame1 extends Game {
 
     Games have Listeners built in, so you can register events in the game class.
     They are automatically registered and unregistered when the game starts and ends.
+
+    NOTE: When creating a game, please add it to the Switch statement in the Arena class.
      */
 
     private HashMap<UUID, Integer> points; //Not all games will have points, but this is just an example

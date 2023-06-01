@@ -2,6 +2,7 @@ package dev.hepno.minigamecore.instance;
 
 import dev.hepno.minigamecore.MinigameCore;
 import dev.hepno.minigamecore.abstracted.Game;
+import dev.hepno.minigamecore.instance.game.ExampleGame1;
 import dev.hepno.minigamecore.manager.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -25,20 +26,32 @@ public class Arena {
 
     private int id;
     private Location spawn;
+    private String gameName;
 
     private List<UUID> players = new ArrayList<>();
     private GameState state;
     private Countdown countdown;
     private Game game;
 
-    public Arena(MinigameCore plugin, int id, Location spawn) {
+    public Arena(MinigameCore plugin, int id, Location spawn, String game) {
         this.plugin = plugin;
         this.id = id;
         this.spawn = spawn;
         this.state = GameState.RECRUITING;
         this.players = new ArrayList<>();
         this.countdown = new Countdown(plugin, this);
-        this.game = new Game(this);
+        this.gameName = game;
+
+        /* IF YOU ARE FORKING THIS, ADD YOUR GAME HERE, AS WELL AS IN THE RESET METHOD */
+        switch (game) {
+            case "ExampleGame1" -> {
+                this.game = new ExampleGame1(plugin, this);
+            }
+            case "ExampleGame2" -> {
+                this.game = new dev.hepno.minigamecore.instance.game.ExampleGame2(plugin, this);
+            }
+        }
+
     }
 
     /* Game Methods */
@@ -59,7 +72,16 @@ public class Arena {
         countdown.cancel();
         players.clear();
         countdown = new Countdown(plugin, this);
-        game = new Game(this);
+        game.removeEvents();
+
+        switch (gameName) {
+            case "ExampleGame1" -> {
+                this.game = new ExampleGame1(plugin, this);
+            }
+            case "ExampleGame2" -> {
+                this.game = new dev.hepno.minigamecore.instance.game.ExampleGame2(plugin, this);
+            }
+        }
     }
 
     /* General Methods */
