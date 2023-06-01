@@ -15,7 +15,7 @@ import java.util.UUID;
 public class ExampleGame2 extends Game {
 
     /*
-    This class is a more bare bones example of a game. For a more in-depth example, see ExampleGame1.java
+    This class is a more bare-bones example of a game. For a more in-depth example, see ExampleGame1.java
     This class exists only to show that you can have multiple games in a single plugin.
      */
 
