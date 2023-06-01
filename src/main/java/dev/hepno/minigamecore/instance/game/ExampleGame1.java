@@ -13,7 +13,7 @@ import java.util.UUID;
 public class ExampleGame1 extends Game {
 
     /*
-    This class is an Example Game. It is a bare bones example of a game.
+    This class is an Example Game. It is a bare-bones example of a game.
     This game would not be fun to play at all, but it gives an example of how to use the Game class.
 
     To make a game, you must extend the Game class, and implement the onStart() method.

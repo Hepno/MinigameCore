@@ -3,8 +3,11 @@ package dev.hepno.minigamecore.instance.game;
 import dev.hepno.minigamecore.MinigameCore;
 import dev.hepno.minigamecore.instance.Arena;
 import dev.hepno.minigamecore.abstracted.Game;
+import dev.hepno.minigamecore.instance.GameState;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
@@ -30,6 +33,13 @@ public class ExampleGame2 extends Game {
     public void setWinner(UUID uuid) {
         // In this example game, points don't matter, first player to get a kill wins
         arena.broadcastTitle("Game Over!", "");
+    }
+
+    @EventHandler
+    public void onPlayerDeath(PlayerDeathEvent event) {
+        if (arena == null) return;
+        if (arena.getState() != GameState.INGAME) return;
+        setWinner(event.getEntity().getKiller().getUniqueId());
     }
 
 }
